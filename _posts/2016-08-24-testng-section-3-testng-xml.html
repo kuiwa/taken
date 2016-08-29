@@ -1,0 +1,404 @@
+---
+title: "Testng Section 3 testng.xml"
+layout: "post"
+permalink: "/2016/08/testng-section-3-testng-xml.html"
+date: "2016-08-24 13:22:00"
+---
+
+Here is a quick overview of the annotations available in TestNG along with their attributes. 
+
+<head>
+<style type="text/css">
+#customers
+  {
+  font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+  width:100%;
+  border-collapse:collapse;
+  text-align:left;
+  }
+  
+#customers td, #customers th 
+  {
+  font-size:1em;
+  border:1px solid #98bf21;
+  padding:3px 7px 2px 7px;
+  text-align:left;
+  }
+
+#customers th 
+  {
+  font-size:1.1em;
+  text-align:left;
+  padding-top:5px;
+  padding-bottom:4px;
+  background-color:#A7C942;
+  color:#ffffff;
+  }
+
+#customers tr.alt td 
+  {
+  color:#000000;
+  background-color:#EAF2D3;
+  }
+</style>
+</head>
+  
+<p>
+<table id="customers">
+    <tr>
+        <th colspan="2">@BeforeSuite</th>
+		<td>The annotated method will be run before all tests in this suite have run.</td>
+    </tr>
+	<tr>
+        <th colspan="2">@BeforeTest</th>
+		<td>The annotated method will be run before any test method belonging to the classes inside the <test> tag is run. </td>
+	</tr>
+	<tr>
+        <th colspan="2">@BeforeGroups</th>
+		<td>The list of groups that this configuration method will run before. This method is guaranteed to run shortly before the first test method that belongs to any of these groups is invoked. </td>
+	</tr>
+	<tr>
+        <th colspan="2">@BeforeClass</th>
+		<td>The annotated method will be run before the first test method in the current class is invoked. </td>
+	</tr>
+	<tr>
+        <th colspan="2">@BeforeMethod</th>
+		<td>The annotated method will be run before each test method. </td>
+	</tr>
+	<tr>
+        <th colspan="2">@AfterMethod</th>
+		<td>The annotated method will be run after each test method. </td>
+	</tr>
+	<tr>
+        <th colspan="2">@AfterClass</th>
+		<td>The annotated method will be run after all the test methods in the current class have been run.</td>
+	</tr>
+	<tr>
+        <th colspan="2">@AfterGroups</th>
+		<td>The list of groups that this configuration method will run after. This method is guaranteed to run shortly after the last test method that belongs to any of these groups is invoked. </td>
+	</tr>
+	<tr>
+        <th colspan="2">@AfterTest</th>
+		<td>The annotated method will be run after all the test methods belonging to the classes inside the <test> tag have run. </td>
+	</tr>
+	<tr>
+        <th colspan="2">@AfterSuite</th>
+		<td>The annotated method will be run after all tests in this suite have run. </td>
+	</tr>
+	
+	<tr>
+		<td></td>
+		<td><tt>alwaysRun</tt></td>
+		<td>For before methods (beforeSuite, beforeTest, beforeTestClass and beforeTestMethod, but not beforeGroups): If set to true, this configuration method will be run regardless of what groups it belongs to.
+		<br>
+		For after methods (afterSuite, afterClass, ...): If set to true, this configuration method will be run even if one or more methods invoked previously failed or was skipped. </td>
+	</tr>
+	<tr>
+	<td>
+	</td>
+	<td>
+	<tt>dependsOnGroups</tt>
+	</td>
+	<td>
+			  The list of groups this method depends on.
+	</td>
+	</tr>
+
+	<tr>
+	<td>
+	</td>
+	<td>
+	<tt>dependsOnMethods</tt>
+	</td>
+	<td>
+			  The list of methods this method depends on.
+	</td>
+	</tr>
+
+	<tr>
+	<td>
+	</td>
+	<td>
+	<tt>enabled</tt>
+	</td>
+	<td>
+			  Whether methods on this class/method are enabled.
+	</td>
+	</tr>
+
+	<tr>
+	<td>
+	</td>
+	<td>
+	<tt>groups</tt>
+	</td>
+	<td>
+			  The list of groups this class/method belongs to.
+	</td>
+	</tr>
+
+	<tr>
+	<td>
+	</td>
+	<td>
+	<tt>inheritGroups</tt>
+	</td>
+	<td>
+			  If true, this method will belong to groups specified in the @Test annotation at the class level.
+	</td>
+	</tr>
+	
+	<tr class="separator">
+	<td colspan="3">&nbsp;</td>
+	</tr>
+
+	<tr>
+	<th colspan="2"><tt><b>@DataProvider</b></tt></td><td><b>Marks a method as supplying data for a test method. The annotated method must return an Object[][] where each Object[] can be assigned the parameter list of the test method. The @Test method that wants to receive data from this DataProvider needs to use a dataProvider name equals to the name of this annotation.</b></th></tr><tr>
+	<td>
+	</td>
+	<td>
+	<tt>name</tt>
+	</td>
+	<td>
+	The name of this data provider. If it's not supplied, the name of this data provider will automatically be set to the name of the method.
+	</td>
+	</tr>
+	<tr>
+	<td>
+	</td>
+	<td>
+	<tt>parallel</tt>
+	</td>
+	<td>
+	If set to true, tests generated using this data provider are run in parallel. Default value is false.
+	</td>
+	</tr>
+	<tr>
+	<td colspan="3">&nbsp;</td>
+	</tr>
+
+	<tr>
+	<th colspan="2"><b><tt>@Factory</tt></b></td><td><b> Marks a method as a factory that returns objects that will be used by TestNG as Test classes.  The method must return Object[].</b></th></tr><tr>
+	<td colspan="3">&nbsp;</td>
+	</tr>
+
+	<tr>
+	<th colspan="2"><b><tt>@Listeners</tt></b></th><td><b>Defines listeners on a test class.</b></td></tr>
+	<tr>
+	  <td></td>
+	  <td>
+		<tt>value</tt>
+	  </td>
+	  <td>
+		An array of classes that extend <tt>org.testng.ITestNGListener</tt>.
+	  </td>
+	</tr>
+
+	<tr>
+	<td colspan="3">&nbsp;</td>
+	</tr>
+
+	<th colspan="2"><b><tt>@Parameters</tt></b></td><td><b>Describes how to pass parameters to a @Test method.</b></th></tr><tr>
+	<td>
+	</td>
+	<td>
+	<tt>value</tt>
+	</td>
+	<td>
+	The list of variables used to fill the parameters of this method.
+	</td>
+	</tr>
+
+	<tr>
+	<td colspan="3">&nbsp;</td>
+	</tr>
+
+	<tr>
+	<th colspan="2"><b>@Test</b></td><td><b>Marks a class or a method as part of the test.</b></th></tr><tr>
+	<td>
+	</td>
+	<td>
+	<tt>alwaysRun</tt>
+	</td>
+	<td>
+			  If set to true, this test method will always be run even if it depends on a method that failed.
+	</td>
+	</tr>
+
+	<tr>
+	<td>
+	</td>
+	<td>
+	<tt>dataProvider</tt>
+	</td>
+	<td>
+	The name of the data provider for this test method.
+	</td>
+	</tr>
+
+
+	<tr>
+	<td>
+	</td>
+	<td>
+	<tt>dataProviderClass</tt>
+	</td>
+	<td>
+	The class where to look for the data provider.  If not specified, the data provider will be looked on the class of the current test method or one of its base classes. If this attribute is specified, the data provider method needs to be static on the specified class.  
+	</td>
+	</tr>
+
+
+
+
+
+
+	<tr>
+	<td>
+	</td>
+	<td>
+	<tt>dependsOnGroups</tt>
+	</td>
+	<td>
+			  The list of groups this method depends on.
+	</td>
+	</tr>
+
+	<tr>
+	<td>
+	</td>
+	<td>
+	<tt>dependsOnMethods</tt>
+	</td>
+	<td>
+			  The list of methods this method depends on.
+	</td>
+	</tr>
+
+	<tr>
+	<td>
+	</td>
+	<td>
+	<tt>description</tt>
+	</td>
+	<td>
+			  The description for this method.
+	</td>
+	</tr>
+
+	<tr>
+	<td>
+	</td>
+	<td>
+	<tt>enabled</tt>
+	</td>
+	<td>
+			  Whether methods on this class/method are enabled.
+	</td>
+	</tr>
+
+	<tr>
+	<td>
+	</td>
+	<td>
+	<tt>expectedExceptions</tt>
+	</td>
+	<td>
+			   The list of exceptions that a test method is expected to throw.  If no exception or a different than one on this list is thrown, this test will be marked a failure.
+	</td>
+	</tr>
+
+	<tr>
+	<td>
+	</td>
+	<td>
+	<tt>groups</tt>
+	</td>
+	<td>
+			  The list of groups this class/method belongs to.
+	</td>
+	</tr>
+
+	<tr>
+	<td>
+	</td>
+	<td>
+	<tt>invocationCount</tt>
+	</td>
+	<td>
+			  The number of times this method should be invoked.
+	</td>
+	</tr>
+
+	<tr>
+	<td>
+	</td>
+	<td>
+	<tt>invocationTimeOut</tt>
+	</td>
+	<td>
+			  The maximum number of milliseconds this test should take for the cumulated time of all the invocationcounts.  This attribute will be ignored if invocationCount is not specified.
+	</td>
+	</tr>
+
+	<tr>
+	<td>
+	</td>
+	<td>
+	<tt>priority</tt>
+	</td>
+	<td>
+			  The priority for this test method. Lower priorities will be scheduled first.
+	</td>
+	</tr>
+
+	<tr>
+	<td>
+	</td>
+	<td>
+
+	<tt>successPercentage</tt>
+	</td>
+	<td>
+			  The percentage of success expected from this method
+	</td>
+	</tr>
+
+	<tr>
+	<td>
+	</td>
+	<td>
+	<tt>singleThreaded</tt>
+	</td>
+	<td>
+				 If set to true, all the methods on this test class are guaranteed to run in the same thread, even if the tests are currently being run with parallel="methods". This attribute can only be used at the class level and it will be ignored if used at the method level. Note: this attribute used to be called <tt>sequential</tt> (now deprecated).
+
+	</td>
+	</tr>
+
+	<tr>
+	<td>
+	</td>
+	<td>
+	<tt>timeOut</tt>
+	</td>
+	<td>
+			  The maximum number of milliseconds this test should take.
+	</td>
+	</tr>
+
+	<tr>
+	<td>
+	</td>
+	<td>
+	<tt>threadPoolSize</tt>
+	</td>
+	<td>
+				 The size of the thread pool for this method.  
+	The method will be invoked from multiple threads as specified by 
+	invocationCount. <br>Note:  this attribute is ignored if invocationCount is not specified
+
+	</td>
+	</tr>
+</table>
+</p>
